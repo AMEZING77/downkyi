@@ -93,7 +93,7 @@
                     Command="{Binding SkinCommand}"
                     Style="{StaticResource SystemBtnStyle}"
                     ToolTip="{DynamicResource Skin}"
-                    Visibility="Collapsed">
+                    Visibility="Visible">
                     <Path
                         Width="{Binding SkinIcon.Width}"
                         Height="{Binding SkinIcon.Height}"

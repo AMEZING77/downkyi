@@ -155,7 +155,10 @@ namespace DownKyi.ViewModels.DownloadManager
         private void ExecuteRemoveVideoCommand()
         {
             AlertService alertService = new AlertService(DialogService);
+            //ShowWarning中的ShowMessage方法使用了App.PropertyChangeAsync
+            //由于Prism.Services.Dialogs.IDialogService无异步，所以只能使用同步
             ButtonResult result = alertService.ShowWarning(DictionaryResource.GetString("ConfirmDelete"), 2);
+            //PropertyChangeAsync必须响应事件为同步，否则UI后响应，服务会直接返回None值
             if (result != ButtonResult.OK)
             {
                 return;

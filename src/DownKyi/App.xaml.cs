@@ -153,9 +153,13 @@ namespace DownKyi
                 // 储存
                 Dictionary["SplashWindow"] = sw;
                 // 不能用Show
+                //在启动画面中，通常使用 ShowDialog 是合适的，因为它会阻止用户在启动画面显示时与主窗口交互
                 sw.ShowDialog();
             });
-            // 设置单线程
+            // 设置单线程 STA (Single-Threaded Apartment)
+            // 在这种模式下，一个线程只能与其自己创建的COM对象进行交互，并且这些对象不是线程安全的。
+            // WPF 要求所有与UI相关的操作都在STA线程中执行。
+            // 设置方法需在Strat前进行；
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
 
@@ -234,6 +238,7 @@ namespace DownKyi
             if (Current == null) { return; }
 
             Current.Dispatcher.Invoke(callback);
+            //Current.Dispatcher.BeginInvoke(callback);
         }
 
         /// <summary>

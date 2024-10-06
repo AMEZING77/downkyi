@@ -571,6 +571,9 @@
     <PackageReference Include="System.Data.SQLite.Core">
       <Version>1.0.112.2</Version>
     </PackageReference>
+    <PackageReference Include="WebPSharp">
+      <Version>0.5.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\favicon.ico" />

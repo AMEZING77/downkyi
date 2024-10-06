@@ -161,6 +161,7 @@ namespace DownKyi.ViewModels
                 if (App.Dictionary.ContainsKey("SplashWindow"))
                 {
                     Views.SplashWindow sw = App.Dictionary["SplashWindow"] as Views.SplashWindow;
+                    Thread.Sleep(2000);
                     // 在sw的线程上关闭SplashWindow
                     sw.Dispatcher.Invoke(() => sw.Close());
                 }
@@ -248,11 +249,19 @@ namespace DownKyi.ViewModels
             // 皮肤按钮点击事件
             SkinCommand = new DelegateCommand(() =>
             {
-                // 设置主题
-                DictionaryResource.LoadTheme("ThemeDiy");
-
-                // 切换语言
-                DictionaryResource.LoadLanguage("en_US");
+                var d = new Random().Next(0, 2);
+                if (d == 0)
+                {
+                    // 设置主题
+                    DictionaryResource.LoadTheme("ThemeDiy");
+                    // 切换语言
+                    DictionaryResource.LoadLanguage("en_US");
+                }
+                else
+                {
+                    DictionaryResource.LoadTheme("ThemeDefault");
+                    DictionaryResource.LoadLanguage("Default");
+                }
             });
             SkinEnterCommand = new DelegateCommand(() =>
             {
